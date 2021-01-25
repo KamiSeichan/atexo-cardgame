@@ -62,6 +62,10 @@ class CardGameService
         return $cardGame;
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function flushAndDraw(Request $request): array
     {
 
@@ -71,5 +75,18 @@ class CardGameService
 
         return array_values(array_intersect_key($cardGame, array_flip($handCardKey)));
 
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function flushDrawAndSort(Request $request): array
+    {
+        $cardGame = $shuffleCardGame = $this->createCardGame($request);
+        shuffle($shuffleCardGame);
+        $handCardKey = array_rand($shuffleCardGame, 10);
+
+        return array_values(array_intersect_key($cardGame, array_flip($handCardKey)));
     }
 }

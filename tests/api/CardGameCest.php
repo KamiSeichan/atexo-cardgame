@@ -38,6 +38,16 @@ class CardGameCest
         $I->seeResponseCodeIs(Response::HTTP_OK);
         $I->assertEquals(32, count(json_decode($I->grabResponse())));
 
+        //ace is not a facecard
+        $I->sendGet('/cardgame',
+            [
+                'aceIsFaceCard' => false
+            ]);
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(Response::HTTP_OK);
+        $I->assertEquals(52, count(json_decode($I->grabResponse())));
+        $I->assertEquals(1, json_decode($I->grabResponse())[0][0]);
+
     }
 
     public function countNumberOfCard(\ApiTester $I)
@@ -49,6 +59,21 @@ class CardGameCest
         $I->assertEquals(10, count(json_decode($I->grabResponse())));
 
         $I->sendGet('/cardgame/not-sort',
+            [
+                'firstValue' => 7,
+                'lastValue' => 8,
+                'withCardFace' => false
+            ]);
+
+        $I->seeResponseCodeIs(Response::HTTP_BAD_REQUEST);
+
+        $I->wantTo("call route for have a sort hand and check number of card");
+        $I->sendGet('/cardgame/sort');
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(Response::HTTP_OK);
+        $I->assertEquals(10, count(json_decode($I->grabResponse())));
+
+        $I->sendGet('/cardgame/sort',
             [
                 'firstValue' => 7,
                 'lastValue' => 8,
