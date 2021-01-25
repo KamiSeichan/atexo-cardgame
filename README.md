@@ -8,6 +8,7 @@ Environnement
 Installation
 
 - Assurez vous d'avoir installer le client symfony (https://symfony.com/download) ou d'avoir un server web (nginx, wamp, etc...)
+- Vous pouvez utiliser le client symfony directement avec la commande symfony serve
 - Lancer composer install --no-interaction
 - La commande run-test permet de lancer les tests
 
