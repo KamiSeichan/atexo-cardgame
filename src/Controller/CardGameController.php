@@ -27,12 +27,37 @@ class CardGameController extends AbstractController
      *
      * @Route(name="full", methods={"GET"})
      *
+     * @param Request $request
      * @return JsonResponse
      */
     public function getCardGame(Request $request): JsonResponse
     {
         return new JsonResponse(
             $this->cardGameService->createCardGame($request)
+        );
+    }
+
+    /**
+     *
+     * @Route("/not-sort", name="cardgame_not_sort", methods={"GET"})
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getNotSortHand(Request $request): JsonResponse
+    {
+        if ($request->query->getInt('firstValue') && $request->query->getInt('lastValue') &&
+        $request->query->getBoolean('withCardFace') === false
+        && ($request->query->getInt('lastValue') - $request->query->getInt('firstValue') <= 1)
+        ) {
+            return new JsonResponse(
+                [],
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        return new JsonResponse(
+            $this->cardGameService->flushAndDraw($request)
         );
     }
 }
