@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CardGameController extends AbstractController
 {
-
     public CardGameService $cardGameService;
 
     public function __construct(CardGameService $cardGameService)

@@ -48,7 +48,6 @@ class CardGameService
         $cardGame = [];
 
         for ($i = 0; $i < count($this->colors); $i++) {
-
             for ($j = $firstCardValue; $j <= $lastCardValue; $j++) {
                 $cardGame[] = [$j, $this->colors[$i]];
             }
@@ -68,13 +67,11 @@ class CardGameService
      */
     public function flushAndDraw(Request $request): array
     {
-
         $cardGame = $this->createCardGame($request);
         shuffle($cardGame);
         $handCardKey = array_rand($cardGame, 10);
 
         return array_values(array_intersect_key($cardGame, array_flip($handCardKey)));
-
     }
 
     /**
