@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Swagger\Annotations as SWG;
 
 /**
  *  @Route("/cardgame", name="api_cardgame_")
@@ -26,6 +27,43 @@ class CardGameController extends AbstractController
      *
      * @Route(name="full", methods={"GET"})
      *
+     * @SWG\Tag(name="Card Game")
+     * @SWG\Parameter(
+     *     name="aceIsFaceCard",
+     *     description="Boolen qui permet de dire si l'as est une figure ou le 1",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="firstValue",
+     *     description="première carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="lastValue",
+     *     description="dernière carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="withCardFace",
+     *     description="Boolen qui permet de dire si on joue avec les têtes ou non",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Response(
+     *     response=200,
+     *     description="http_ok"
+     * )
+     *
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -39,6 +77,47 @@ class CardGameController extends AbstractController
     /**
      *
      * @Route("/not-sort", name="cardgame_not_sort", methods={"GET"})
+     *
+     * @SWG\Tag(name="Card Game")
+     * @SWG\Parameter(
+     *     name="aceIsFaceCard",
+     *     description="Boolen qui permet de dire si l'as est une figure ou le 1",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="firstValue",
+     *     description="première carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="lastValue",
+     *     description="dernière carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="withCardFace",
+     *     description="Boolen qui permet de dire si on joue avec les têtes ou non",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Response(
+     *     response=200,
+     *     description="http_ok"
+     * )
+     *
+     * @SWG\Response(
+     *     response=400,
+     *     description="bad_request"
+     * )
      *
      * @param Request $request
      * @return JsonResponse
@@ -63,6 +142,47 @@ class CardGameController extends AbstractController
     /**
      *
      * @Route("/sort", name="cardgame_sort", methods={"GET"})
+     *
+     * @SWG\Tag(name="Card Game")
+     * @SWG\Parameter(
+     *     name="aceIsFaceCard",
+     *     description="Boolen qui permet de dire si l'as est une figure ou le 1",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="firstValue",
+     *     description="première carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="lastValue",
+     *     description="dernière carte d'une couleur",
+     *     in="query",
+     *     type="integer"
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="withCardFace",
+     *     description="Boolen qui permet de dire si on joue avec les têtes ou non",
+     *     in="query",
+     *     type="boolean"
+     *
+     * )
+     *
+     * @SWG\Response(
+     *     response=200,
+     *     description="http_ok"
+     * )
+     *
+     * @SWG\Response(
+     *     response=400,
+     *     description="bad_request"
+     * )
      *
      * @param Request $request
      * @return JsonResponse
